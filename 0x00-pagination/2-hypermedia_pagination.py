@@ -65,10 +65,10 @@ class Server:
         full_data = {
           'page_size': page_size,
           'page': page,
-          'date': page_data,
+          'data': page_data,
           'next_page': page + 1 if page_size * page < dataset_size else None,
           'prev_page': page - 1 if page > 1 else None,
-          'totale_pages': total_pages
+          'total_pages': total_pages
         }
 
         return full_data
