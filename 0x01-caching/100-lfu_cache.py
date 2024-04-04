@@ -22,15 +22,14 @@ class LFUCache(BaseCaching):
         if key is not None and item is not None:
             if key in self.cache_data:
                 self.cache_data.move_to_end(key)
+                self.frequency[key] += 1
             elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 lfu = min(self.frequency, key=lambda k: self.frequency[k])
-                if len(lfu) > 1:
-                    lfu = next(iter((self.cache_data)))
                 print(f'DISCARD: {lfu}')
                 del self.cache_data[lfu]
                 del self.frequency[lfu]
             self.cache_data[key] = item
-            self.frequency[key] = 0
+            self.frequency[key] = 1
 
     def get(self, key):
         """Get an item by key
