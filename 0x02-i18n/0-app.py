@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 def home():
     """Home page"""
-    return render_template("index.html")
+    return render_template("0-index.html")
 
 
 if __name__ == "__main__":
