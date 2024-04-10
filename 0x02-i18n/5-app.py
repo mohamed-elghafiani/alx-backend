@@ -34,8 +34,7 @@ def get_user():
     user_id = request.args.get('login_as')
     if user_id:
         user_id = int(user_id)
-        return users.get(user_id)
-    return None
+        return users.get(user_id, None)
 
 
 @app.before_request
@@ -58,7 +57,7 @@ def get_locale():
         if user is not None:
             return user.locale
 
-    return request.accept_languages.best_match(['en', 'fr'])
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route("/", methods=['GET'], strict_slashes=False)
@@ -68,4 +67,4 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
