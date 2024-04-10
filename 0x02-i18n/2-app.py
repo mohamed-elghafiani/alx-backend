@@ -22,6 +22,8 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
+    """Get local user language
+    """
     user = getattr(g, 'user', None)
     if user is not None:
         return user.locale
