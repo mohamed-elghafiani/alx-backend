@@ -55,7 +55,7 @@ def get_locale():
     else:
         user = getattr(g, 'user', None)
         if user is not None:
-            return user.locale
+            return user["locale"]
 
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
