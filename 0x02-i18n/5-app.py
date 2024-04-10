@@ -61,10 +61,10 @@ def get_locale():
     return request.accept_languages.best_match(['en', 'fr'])
 
 
-@app.route("/")
+@app.route("/", methods=['GET'], strict_slashes=False)
 def home():
     """Home page"""
-    return render_template("3-index.html")
+    return render_template("5-index.html")
 
 
 if __name__ == "__main__":
