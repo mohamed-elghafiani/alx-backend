@@ -52,12 +52,12 @@ def get_locale():
     user_locale = request.args.get('locale')
     if user_locale in app.config['LANGUAGES']:
         return user_locale
-    else:
+    elif getattr(g, 'user', None):
         user = getattr(g, 'user', None)
-        if user is not None:
+        if user["locale"] in app.config['LANGUAGES']:
             return user["locale"]
-
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    else:
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route("/", methods=['GET'], strict_slashes=False)
