@@ -9,6 +9,8 @@ app = Flask(__name__)
 
 
 class Config:
+    """Config Variables
+    """
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
@@ -20,6 +22,8 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
+    """Returns the user's local language or default one if NA
+    """
     user = getattr(g, 'user', None)
     if user is not None:
         return user.locale
